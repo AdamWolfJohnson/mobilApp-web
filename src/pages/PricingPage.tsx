@@ -202,7 +202,7 @@ const PricingPage: React.FC = () => {
             </div>
             <div className="flex items-center">
               <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe" className="h-6 mr-2" />
-              <span className="text-gray-700">Stripe ile Güçlendirilmiştir</span>
+              <span className="text-gray-700">ile Güçlendirilmiştir</span>
             </div>
           </div>
         </div>
