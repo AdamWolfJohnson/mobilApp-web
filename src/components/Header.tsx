@@ -47,6 +47,26 @@ const Header: React.FC = () => {
             <span className="text-xl font-bold text-gray-800" style={{ fontFamily: 'Arial, sans-serif' }}>İsveç Ehliyeti</span>
           </Link>
 
+          <div className="flex items-center md:hidden">
+            {/* Mobile Login Button - Only visible on mobile */}
+            <Link 
+              to="/login" 
+              className="px-3 py-1 bg-orange-500 text-white text-sm font-medium rounded-md hover:bg-orange-600 transition-colors mr-3"
+              onClick={scrollToTop}
+            >
+              Giriş Yap
+            </Link>
+            
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={toggleMenu}
+              className="p-2 focus:outline-none"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link 
@@ -117,15 +137,6 @@ const Header: React.FC = () => {
               Kayıt Ol
             </Link>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button 
-            onClick={toggleMenu}
-            className="md:hidden p-2 focus:outline-none"
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
         </div>
 
         {/* Mobile Navigation */}
