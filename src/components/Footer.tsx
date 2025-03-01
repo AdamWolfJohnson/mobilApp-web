@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MessageSquare } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MessageSquare, Shield } from 'lucide-react';
 
 const Footer: React.FC = () => {
   // Function to scroll to top when clicking footer links
@@ -97,6 +97,17 @@ const Footer: React.FC = () => {
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   Canlı Destek
                 </a>
+              </li>
+              
+              {/* Payment Methods */}
+              <li className="mt-4 pt-4 border-t border-gray-800">
+                <div className="flex items-center space-x-3">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa" className="h-5" />
+                  <div className="flex items-center">
+                    <Shield className="h-5 w-5 text-gray-400 mr-1" />
+                    <span className="text-gray-400">Güvenli Ödeme</span>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>

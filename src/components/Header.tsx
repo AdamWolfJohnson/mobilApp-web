@@ -66,6 +66,14 @@ const Header: React.FC = () => {
               Hakkımızda
             </Link>
             <Link 
+              to="/theory-lessons" 
+              className={`font-medium ${isActive('/theory-lessons') ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`}
+              onClick={scrollToTop}
+              style={{ fontFamily: 'Futura, Arial, sans-serif' }}
+            >
+              Teori Dersleri
+            </Link>
+            <Link 
               to="/pricing" 
               className={`font-medium ${isActive('/pricing') ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`}
               onClick={scrollToTop}
@@ -94,11 +102,11 @@ const Header: React.FC = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Link 
               to="/login" 
-              className="px-4 py-2 text-blue-600 font-medium hover:text-blue-800"
+              className="px-4 py-2 bg-orange-500 text-white font-medium rounded-md hover:bg-orange-600 transition-colors"
               onClick={scrollToTop}
               style={{ fontFamily: 'Futura, Arial, sans-serif' }}
             >
-              Giriş Yap
+              Giriş
             </Link>
             <Link 
               to="/signup" 
@@ -150,6 +158,17 @@ const Header: React.FC = () => {
               Hakkımızda
             </Link>
             <Link 
+              to="/theory-lessons" 
+              className={`font-medium ${isActive('/theory-lessons') ? 'text-blue-600' : 'text-gray-600'}`}
+              onClick={() => {
+                setIsMenuOpen(false);
+                scrollToTop();
+              }}
+              style={{ fontFamily: 'Futura, Arial, sans-serif' }}
+            >
+              Teori Dersleri
+            </Link>
+            <Link 
               to="/pricing" 
               className={`font-medium ${isActive('/pricing') ? 'text-blue-600' : 'text-gray-600'}`}
               onClick={() => {
@@ -185,14 +204,14 @@ const Header: React.FC = () => {
             <div className="pt-2 flex flex-col space-y-2">
               <Link 
                 to="/login"
-                className="px-4 py-2 text-blue-600 font-medium border border-blue-600 rounded-md"
+                className="px-4 py-2 bg-orange-500 text-white font-medium rounded-md hover:bg-orange-600 transition-colors"
                 onClick={() => {
                   setIsMenuOpen(false);
                   scrollToTop();
                 }}
                 style={{ fontFamily: 'Futura, Arial, sans-serif' }}
               >
-                Giriş Yap
+                Giriş
               </Link>
               <Link 
                 to="/signup"

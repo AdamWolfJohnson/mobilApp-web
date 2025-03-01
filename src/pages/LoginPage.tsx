@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, Shield } from 'lucide-react';
 
 const LoginPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -206,6 +206,16 @@ const LoginPage: React.FC = () => {
                   </svg>
                 </a>
               </div>
+            </div>
+          </div>
+          
+          <div className="mt-6 bg-blue-50 p-4 rounded-md flex items-start">
+            <Shield className="h-5 w-5 text-blue-600 mr-3 mt-0.5 flex-shrink-0" />
+            <div>
+              <h3 className="text-sm font-medium text-blue-800">Güvenli Giriş</h3>
+              <p className="mt-1 text-sm text-blue-700">
+                Hesabınıza güvenli bir şekilde giriş yapın. Tüm verileriniz şifrelenir ve güvenle saklanır.
+              </p>
             </div>
           </div>
         </div>

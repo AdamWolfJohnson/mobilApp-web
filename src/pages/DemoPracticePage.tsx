@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { questions } from '../data/questions';
-import { ArrowRight, AlertCircle, CheckCircle, Lock, ChevronLeft, ChevronRight, HelpCircle, Share2, ThumbsUp, ThumbsDown, Clock, Award, X } from 'lucide-react';
+import { ArrowRight, AlertCircle, CheckCircle, Lock, ChevronLeft, ChevronRight, HelpCircle, Share2, ThumbsUp, ThumbsDown, Clock, Award, X, BookmarkIcon } from 'lucide-react';
 
 interface TestQuestion {
   id: number;
@@ -21,6 +21,7 @@ const DemoPracticePage: React.FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<number[]>([]);
   const [answeredQuestions, setAnsweredQuestions] = useState<number[]>([]);
+  const [markedForLater, setMarkedForLater] = useState<number[]>([]);
   const [timeRemaining, setTimeRemaining] = useState(20 * 60); // 20 minutes in seconds
   const [testStarted, setTestStarted] = useState(false);
   const [testCompleted, setTestCompleted] = useState(false);
@@ -137,6 +138,7 @@ const DemoPracticePage: React.FC = () => {
     setCurrentQuestionIndex(0);
     setSelectedAnswers(Array(demoQuestions.length).fill(-1));
     setAnsweredQuestions([]);
+    setMarkedForLater([]);
     setTestCompleted(false);
     setShowResults(false);
     
@@ -177,6 +179,17 @@ const DemoPracticePage: React.FC = () => {
         behavior: 'auto'
       });
     }
+  };
+
+  const handleMarkForLater = () => {
+    if (!markedForLater.includes(currentQuestionIndex)) {
+      setMarkedForLater([...markedForLater, currentQuestionIndex]);
+    } else {
+      setMarkedForLater(markedForLater.filter(index => index !== currentQuestionIndex));
+    }
+    
+    // Move to next question
+    handleNext();
   };
   
   const finishTest = () => {
@@ -226,7 +239,7 @@ const DemoPracticePage: React.FC = () => {
   
   if (!accessGranted) {
     return (
-      <div className="min-h-screen bg-gray-50 py-6 px-4 sm:py-12">
+      <div id="top" ref={topRef} className="min-h-screen bg-gray-50 py-6 px-4 sm:py-12">
         <div className="container mx-auto">
           <div className="max-w-md mx-auto">
             <div className="text-center mb-6">
@@ -348,7 +361,7 @@ const DemoPracticePage: React.FC = () => {
   
   if (!testStarted) {
     return (
-      <div id="top" ref={topRef} className="min-h-screen bg-gray-50 py-6 px-4 sm:py-12">
+      <div className="min-h-screen bg-gray-50 py-6 px-4 sm:py-12">
         <div className="container mx-auto">
           <div className="max-w-md mx-auto">
             <div className="text-center mb-6">
@@ -609,6 +622,7 @@ const DemoPracticePage: React.FC = () => {
   }
   
   const currentQuestion = demoQuestions[currentQuestionIndex];
+  const isMarkedForLater = markedForLater.includes(currentQuestionIndex);
   
   return (
     <div id="top" ref={topRef} className="min-h-screen bg-gray-50 py-4 px-4 sm:py-8">
@@ -654,7 +668,7 @@ const DemoPracticePage: React.FC = () => {
                 ))}
               </div>
               
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center">
                 <button
                   onClick={handlePrevious}
                   disabled={currentQuestionIndex === 0}
@@ -666,6 +680,19 @@ const DemoPracticePage: React.FC = () => {
                 >
                   <ChevronLeft className="h-5 w-5 mr-1" />
                   <span>Önceki</span>
+                </button>
+                
+                <button
+                  onClick={handleMarkForLater}
+                  className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                    isMarkedForLater
+                      ? 'bg-amber-500 text-white hover:bg-amber-600'
+                      : 'bg-amber-600 text-white hover:bg-amber-700'
+                  }`}
+                  title="Sonra Çöz"
+                  aria-label="Sonra Çöz"
+                >
+                  <BookmarkIcon className="h-5 w-5" />
                 </button>
                 
                 {currentQuestionIndex === demoQuestions.length - 1 ? (
@@ -689,6 +716,16 @@ const DemoPracticePage: React.FC = () => {
             </div>
           </div>
           
+          {/* Info banner for Solve Later */}
+          <div className="bg-amber-50 rounded-lg p-4 flex items-start mb-4">
+            <AlertCircle className="h-5 w-5 text-amber-600 mr-3 mt-0.5 flex-shrink-0" />
+            <div>
+              <p className="text-sm text-amber-700">
+                <span className="font-medium">İpucu:</span> Yer işareti simgesine tıklayarak soruyu işaretleyebilir ve daha sonra dönebilirsiniz. İşaretlenen sorular sarı renkte gösterilir.
+              </p>
+            </div>
+          </div>
+          
           {/* Question navigation */}
           <div className="bg-white rounded-lg shadow-md p-4 mb-4">
             <div className="grid grid-cols-5 sm:grid-cols-8 gap-2">
@@ -705,8 +742,9 @@ const DemoPracticePage: React.FC = () => {
                   }}
                   className={`w-full h-10 rounded-md flex items-center justify-center text-sm font-medium transition-colors
                     ${currentQuestionIndex === index ? 'bg-blue-600 text-white' : ''}
-                    ${selectedAnswers[index] !== -1 && currentQuestionIndex !== index ? 'bg-blue-100 text-blue-600' : ''}
-                    ${selectedAnswers[index] === -1 && currentQuestionIndex !== index ? 'bg-gray-100 text-gray-600' : ''}
+                    ${markedForLater.includes(index) ? 'bg-amber-500 text-white' : ''}
+                    ${selectedAnswers[index] !== -1 && currentQuestionIndex !== index && !markedForLater.includes(index) ? 'bg-blue-100 text-blue-600' : ''}
+                    ${selectedAnswers[index] === -1 && currentQuestionIndex !== index && !markedForLater.includes(index) ? 'bg-gray-100 text-gray-600' : ''}
                   `}
                   aria-label={`Soru ${index + 1}`}
                 >
@@ -722,8 +760,8 @@ const DemoPracticePage: React.FC = () => {
                   <span className="text-xs text-gray-600">Cevaplanan</span>
                 </div>
                 <div className="flex items-center">
-                  <div className="w-4 h-4 bg-gray-100 rounded-sm mr-1"></div>
-                  <span className="text-xs text-gray-600">Cevaplanmayan</span>
+                  <div className="w-4 h-4 bg-amber-500 rounded-sm mr-1"></div>
+                  <span className="text-xs text-gray-600">Sonra Çözülecek</span>
                 </div>
               </div>
               
