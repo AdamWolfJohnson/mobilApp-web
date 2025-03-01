@@ -15,6 +15,7 @@ import CookiePolicyPage from './pages/CookiePolicyPage';
 import RefundPolicyPage from './pages/RefundPolicyPage';
 import FAQPage from './pages/FAQPage';
 import TheoryLessonsPage from './pages/TheoryLessonsPage';
+import LessonPage from './pages/LessonPage';
 import ScrollToTop from './components/ScrollToTop';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/demo" element={<DemoPracticePage />} />
             <Route path="/theory-lessons" element={<TheoryLessonsPage />} />
+            <Route path="/lessons/:lessonId" element={<LessonPage />} />
             <Route path="/terms-of-service" element={<TermsOfServicePage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/cookie-policy" element={<CookiePolicyPage />} />
