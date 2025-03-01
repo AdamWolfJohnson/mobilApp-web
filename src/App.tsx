@@ -14,6 +14,7 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import CookiePolicyPage from './pages/CookiePolicyPage';
 import RefundPolicyPage from './pages/RefundPolicyPage';
 import FAQPage from './pages/FAQPage';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <ScrollToTop />
       </div>
     </Router>
   );

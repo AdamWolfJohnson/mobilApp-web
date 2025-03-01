@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { questions } from '../data/questions';
 import { ArrowRight, AlertCircle, CheckCircle, Lock, ChevronLeft, ChevronRight, HelpCircle, Share2, ThumbsUp, ThumbsDown, Clock, Award, X } from 'lucide-react';
@@ -25,6 +25,9 @@ const DemoPracticePage: React.FC = () => {
   const [testStarted, setTestStarted] = useState(false);
   const [testCompleted, setTestCompleted] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  
+  // Ref for scrolling
+  const topRef = useRef<HTMLDivElement>(null);
   
   // We'll show 15 questions in the demo
   const demoQuestions = questions.slice(0, 15).map((q, index) => ({
@@ -54,6 +57,19 @@ const DemoPracticePage: React.FC = () => {
       if (timer) clearInterval(timer);
     };
   }, [testStarted, testCompleted, timeRemaining]);
+  
+  // Scroll to top when changing questions or showing results
+  useEffect(() => {
+    if (testStarted && topRef.current) {
+      // Use setTimeout to ensure the DOM has updated before scrolling
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, 100);
+    }
+  }, [currentQuestionIndex, showResults, testStarted]);
   
   const validateForm = () => {
     const errors: {[key: string]: string} = {};
@@ -88,6 +104,12 @@ const DemoPracticePage: React.FC = () => {
     
     // Grant access to the demo
     setAccessGranted(true);
+    
+    // Scroll to top immediately after granting access
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto'
+    });
   };
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -117,6 +139,12 @@ const DemoPracticePage: React.FC = () => {
     setAnsweredQuestions([]);
     setTestCompleted(false);
     setShowResults(false);
+    
+    // Scroll to top when starting test
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto'
+    });
   };
   
   const handleAnswer = (selectedOption: number) => {
@@ -132,18 +160,34 @@ const DemoPracticePage: React.FC = () => {
   const handleNext = () => {
     if (currentQuestionIndex < demoQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
+      // Force immediate scroll to top
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto'
+      });
     }
   };
   
   const handlePrevious = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
+      // Force immediate scroll to top
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto'
+      });
     }
   };
   
   const finishTest = () => {
     setTestCompleted(true);
     setShowResults(true);
+    
+    // Force immediate scroll to top when showing results
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto'
+    });
   };
   
   const formatTime = (seconds: number) => {
@@ -304,7 +348,7 @@ const DemoPracticePage: React.FC = () => {
   
   if (!testStarted) {
     return (
-      <div className="min-h-screen bg-gray-50 py-6 px-4 sm:py-12">
+      <div id="top" ref={topRef} className="min-h-screen bg-gray-50 py-6 px-4 sm:py-12">
         <div className="container mx-auto">
           <div className="max-w-md mx-auto">
             <div className="text-center mb-6">
@@ -380,7 +424,7 @@ const DemoPracticePage: React.FC = () => {
     const categories = getResultsByCategory();
     
     return (
-      <div className="min-h-screen bg-gray-50 py-6 px-4 sm:py-12">
+      <div id="top" ref={topRef} className="min-h-screen bg-gray-50 py-6 px-4 sm:py-12">
         <div className="container mx-auto">
           <div className="max-w-3xl mx-auto">
             <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
@@ -567,7 +611,7 @@ const DemoPracticePage: React.FC = () => {
   const currentQuestion = demoQuestions[currentQuestionIndex];
   
   return (
-    <div className="min-h-screen bg-gray-50 py-4 px-4 sm:py-8">
+    <div id="top" ref={topRef} className="min-h-screen bg-gray-50 py-4 px-4 sm:py-8">
       <div className="container mx-auto">
         <div className="max-w-2xl mx-auto">
           {/* Header with timer */}
@@ -651,7 +695,14 @@ const DemoPracticePage: React.FC = () => {
               {demoQuestions.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentQuestionIndex(index)}
+                  onClick={() => {
+                    setCurrentQuestionIndex(index);
+                    // Force immediate scroll to top
+                    window.scrollTo({
+                      top: 0,
+                      behavior: 'auto'
+                    });
+                  }}
                   className={`w-full h-10 rounded-md flex items-center justify-center text-sm font-medium transition-colors
                     ${currentQuestionIndex === index ? 'bg-blue-600 text-white' : ''}
                     ${selectedAnswers[index] !== -1 && currentQuestionIndex !== index ? 'bg-blue-100 text-blue-600' : ''}

@@ -160,22 +160,22 @@ const HomePage: React.FC = () => {
       {/* Stats Section */}
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div>
-              <p className="text-3xl md:text-4xl font-bold text-blue-600">%98</p>
-              <p className="text-gray-600">Geçme Oranı</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="bg-white rounded-lg shadow-md p-6 text-center transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-t-4 border-blue-600">
+              <p className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">%98</p>
+              <p className="text-gray-600 font-medium">Geçme Oranı</p>
             </div>
-            <div>
-              <p className="text-3xl md:text-4xl font-bold text-blue-600">50,000+</p>
-              <p className="text-gray-600">Başarılı Öğrenci</p>
+            <div className="bg-white rounded-lg shadow-md p-6 text-center transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-t-4 border-green-500">
+              <p className="text-3xl md:text-4xl font-bold text-green-500 mb-2">50,000+</p>
+              <p className="text-gray-600 font-medium">Başarılı Öğrenci</p>
             </div>
-            <div>
-              <p className="text-3xl md:text-4xl font-bold text-blue-600">10,000+</p>
-              <p className="text-gray-600">Pratik Soru</p>
+            <div className="bg-white rounded-lg shadow-md p-6 text-center transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-t-4 border-purple-500">
+              <p className="text-3xl md:text-4xl font-bold text-purple-500 mb-2">10,000+</p>
+              <p className="text-gray-600 font-medium">Pratik Soru</p>
             </div>
-            <div>
-              <p className="text-3xl md:text-4xl font-bold text-blue-600">4.9/5</p>
-              <p className="text-gray-600">Öğrenci Puanı</p>
+            <div className="bg-white rounded-lg shadow-md p-6 text-center transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-t-4 border-yellow-500">
+              <p className="text-3xl md:text-4xl font-bold text-yellow-500 mb-2">4.9/5</p>
+              <p className="text-gray-600 font-medium">Öğrenci Puanı</p>
             </div>
           </div>
         </div>
