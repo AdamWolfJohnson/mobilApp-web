@@ -14,8 +14,24 @@ const PricingPage: React.FC = () => {
 
   const pricingPlans = [
     {
+      title: '1 Aylık Erişim',
+      price: '199 SEK',
+      period: 'tek ödeme',
+      features: [
+        'Tüm pratik sorulara erişim',
+        'Deneme sınavları',
+        'Çalışma materyalleri',
+        'Sorular için açıklamalar',
+        'Performans takibi',
+        'Mobil ve masaüstü erişimi',
+        '30 gün para iade garantisi'
+      ],
+      isPopular: false,
+      buttonText: '1 Aylık Erişim Al'
+    },
+    {
       title: 'Sınırsız Erişim',
-      price: '299 SEK',
+      price: '399 SEK',
       period: 'tek ödeme',
       features: [
         'Tüm pratik sorulara sınırsız erişim',
@@ -28,6 +44,22 @@ const PricingPage: React.FC = () => {
       ],
       isPopular: true,
       buttonText: 'Sınırsız Erişim Al'
+    },
+    {
+      title: '3 Aylık Erişim',
+      price: '299 SEK',
+      period: 'tek ödeme',
+      features: [
+        'Tüm pratik sorulara 3 ay erişim',
+        'Deneme sınavları',
+        'Kapsamlı çalışma materyalleri',
+        'Sorular için detaylı açıklamalar',
+        'Performans takibi',
+        'Mobil ve masaüstü erişimi',
+        '30 gün para iade garantisi'
+      ],
+      isPopular: false,
+      buttonText: '3 Aylık Erişim Al'
     }
   ];
 
@@ -38,7 +70,7 @@ const PricingPage: React.FC = () => {
     },
     {
       question: 'Erişimim ne kadar sürer?',
-      answer: 'Erişiminiz asla sona ermez. Satın aldıktan sonra, sınavınıza hazırlanmak için platformumuzu istediğiniz kadar kullanabilirsiniz.'
+      answer: 'Erişiminiz seçtiğiniz plana göre değişir. 1 aylık plan için 30 gün, 3 aylık plan için 90 gün, Sınırsız Erişim planı için ise süresiz erişim sağlanır.'
     },
     {
       question: 'Hangi ödeme yöntemlerini kabul ediyorsunuz?',
@@ -61,45 +93,58 @@ const PricingPage: React.FC = () => {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Basit, Şeffaf Fiyatlandırma</h1>
           <p className="text-xl max-w-3xl mx-auto">
-            Tek plan, tek ödeme, sürücü sınavınızı geçmek için ihtiyacınız olan her şeye sınırsız erişim.
+            İhtiyacınıza uygun bir plan seçin ve sürücü sınavınızı geçmek için gereken tüm kaynaklara erişin.
           </p>
         </div>
       </section>
 
-      {/* Pricing Plan */}
+      {/* Pricing Plans */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-lg shadow-xl overflow-hidden border-2 border-blue-500 transform hover:scale-105 transition-transform duration-300">
-              <div className="bg-blue-500 text-white text-center py-3 font-medium">
-                En Popüler
-              </div>
-              
-              <div className="p-8">
-                <div className="text-center mb-8">
-                  <h2 className="text-3xl font-bold text-gray-800 mb-2">Sınırsız Erişim</h2>
-                  <div className="flex items-center justify-center">
-                    <span className="text-5xl font-bold text-blue-600">299 SEK</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {pricingPlans.map((plan, index) => (
+              <div 
+                key={index} 
+                className={`bg-white rounded-lg shadow-xl overflow-hidden border-2 ${
+                  plan.isPopular ? 'border-blue-500 transform scale-105 md:scale-110 z-10' : 'border-gray-200'
+                } transition-all duration-300 hover:shadow-lg`}
+              >
+                {plan.isPopular && (
+                  <div className="bg-blue-500 text-white text-center py-3 font-medium">
+                    En Popüler
                   </div>
-                  <p className="text-gray-500 mt-2">Tek seferlik ödeme, ömür boyu erişim</p>
-                </div>
+                )}
                 
-                <div className="space-y-4 mb-8">
-                  {pricingPlans[0].features.map((feature, index) => (
-                    <div key={index} className="flex items-start">
-                      <div className="flex-shrink-0 mt-1">
-                        <Check className="h-5 w-5 text-green-500" />
-                      </div>
-                      <p className="ml-3 text-gray-600">{feature}</p>
+                <div className="p-8">
+                  <div className="text-center mb-8">
+                    <h2 className="text-2xl font-bold text-gray-800 mb-2">{plan.title}</h2>
+                    <div className="flex items-center justify-center">
+                      <span className="text-4xl font-bold text-blue-600">{plan.price}</span>
                     </div>
-                  ))}
+                    <p className="text-gray-500 mt-2">Tek seferlik ödeme</p>
+                  </div>
+                  
+                  <div className="space-y-4 mb-8">
+                    {plan.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start">
+                        <div className="flex-shrink-0 mt-1">
+                          <Check className="h-5 w-5 text-green-500" />
+                        </div>
+                        <p className="ml-3 text-gray-600">{feature}</p>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <button className={`w-full py-4 px-6 rounded-lg font-semibold text-lg transition-colors ${
+                    plan.isPopular 
+                      ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                      : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                  }`}>
+                    {plan.buttonText}
+                  </button>
                 </div>
-                
-                <button className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors">
-                  Sınırsız Erişim Al
-                </button>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

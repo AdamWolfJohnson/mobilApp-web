@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Users, Award, BookOpen, Target, ThumbsUp, Heart, Linkedin, Instagram, Mail } from 'lucide-react';
+import { Users, Award, BookOpen, Target, ThumbsUp, Heart, Linkedin, Instagram, Mail, Play } from 'lucide-react';
 
 const AboutPage: React.FC = () => {
   // Function to scroll to top when clicking links
@@ -10,6 +10,8 @@ const AboutPage: React.FC = () => {
       behavior: 'smooth'
     });
   };
+
+  const [showVideo, setShowVideo] = useState(false);
 
   const values = [
     {
@@ -46,36 +48,36 @@ const AboutPage: React.FC = () => {
 
   const team = [
     {
-      name: 'David Anderson',
+      name: 'Orhan Can',
       role: 'Kurucu & CEO',
       image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80',
       bio: 'Öğrencilerin sınavlarını geçmelerine yardımcı olma konusunda 15+ yıllık deneyime sahip eski sürüş eğitmeni.',
       social: {
         instagram: 'https://instagram.com',
         linkedin: 'https://linkedin.com',
-        email: 'mailto:david@driveprep.com'
+        email: 'mailto:orhan@isvecehliyet.com'
       }
     },
     {
-      name: 'Jennifer Lee',
+      name: 'Merve Can',
       role: 'İçerik Müdürü',
       image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80',
       bio: 'Tüm içeriğimizin doğru ve güncel olmasını sağlayan sertifikalı sürüş sınavı görevlisi.',
       social: {
         instagram: 'https://instagram.com',
         linkedin: 'https://linkedin.com',
-        email: 'mailto:jennifer@driveprep.com'
+        email: 'mailto:merve@isvecehliyet.com'
       }
     },
     {
-      name: 'Marcus Johnson',
+      name: 'Akif Can',
       role: 'Baş Geliştirici',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80',
       bio: 'Platformumuzu sezgisel, duyarlı ve öğrenme için etkili olacak şekilde oluşturan teknoloji uzmanı.',
       social: {
         instagram: 'https://instagram.com',
         linkedin: 'https://linkedin.com',
-        email: 'mailto:marcus@driveprep.com'
+        email: 'mailto:akif@isvecehliyet.com'
       }
     }
   ];
@@ -198,11 +200,13 @@ const AboutPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {team.map((member, index) => (
               <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                <img 
-                  src={member.image} 
-                  alt={member.name} 
-                  className="w-full h-64 object-cover"
-                />
+                <div className="h-64 overflow-hidden">
+                  <img 
+                    src={member.image} 
+                    alt={member.name} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
                   <p className="text-blue-600 mb-3">{member.role}</p>
@@ -279,12 +283,33 @@ const AboutPage: React.FC = () => {
                 </li>
               </ul>
             </div>
-            <div className="md:w-1/2">
-              <img 
-                src="https://images.unsplash.com/photo-1600320254374-ce2d293c324e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
-                alt="Çalışan öğrenci" 
-                className="rounded-lg shadow-lg"
-              />
+            <div className="md:w-1/2 relative">
+              {!showVideo ? (
+                <div className="relative group cursor-pointer" onClick={() => setShowVideo(true)}>
+                  <img 
+                    src="https://images.unsplash.com/photo-1600320254374-ce2d293c324e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                    alt="Çalışan öğrenci" 
+                    className="rounded-lg shadow-lg"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-blue-600 bg-opacity-80 rounded-full p-4 shadow-lg transform transition-transform group-hover:scale-110">
+                      <Play className="h-10 w-10 text-white" fill="white" />
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg group-hover:bg-opacity-30 transition-all"></div>
+                </div>
+              ) : (
+                <div className="relative pb-[56.25%] h-0 rounded-lg overflow-hidden shadow-xl">
+                  <iframe 
+                    className="absolute top-0 left-0 w-full h-full rounded-lg"
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
+                    title="Neden İsveç Ehliyeti'ni Seçmelisiniz"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              )}
             </div>
           </div>
         </div>
