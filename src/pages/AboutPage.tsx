@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Users, Award, BookOpen, Target, ThumbsUp, Heart, Linkedin, Instagram, Mail, Play } from 'lucide-react';
+import PromotionalPopup from '../components/PromotionalPopup';
 
 const AboutPage: React.FC = () => {
   // Function to scroll to top when clicking links
@@ -62,7 +63,7 @@ const AboutPage: React.FC = () => {
       name: 'Merve Can',
       role: 'İçerik Müdürü',
       image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&q=80',
-      bio: 'Tüm içeriğimizin doğru ve güncel olmasını sağlayan sertifikalı sürüş sınavı görevlisi.',
+      bio: 'Tüm içeriğimizin doğru ve güncel olmasını sağlayan sertifikalı sürücü sınavı görevlisi.',
       social: {
         instagram: 'https://instagram.com',
         linkedin: 'https://linkedin.com',
@@ -84,6 +85,9 @@ const AboutPage: React.FC = () => {
 
   return (
     <div>
+      {/* Promotional Popup - Hakkımızda sayfası için 10 saniye gecikme ile */}
+      <PromotionalPopup delay={5} aboutPageDelay={10} />
+      
       {/* Hero Section */}
       <section className="bg-blue-600 text-white py-20">
         <div className="container mx-auto px-4 text-center">

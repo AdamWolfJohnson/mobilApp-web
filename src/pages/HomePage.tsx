@@ -4,6 +4,7 @@ import { BookOpen, CheckCircle, BarChart, Award, Clock, Shield, Play } from 'luc
 import FeatureCard from '../components/FeatureCard';
 import TestimonialCard from '../components/TestimonialCard';
 import FAQ from '../components/FAQ';
+import PromotionalPopup from '../components/PromotionalPopup';
 
 const HomePage: React.FC = () => {
   const [showVideo, setShowVideo] = useState(false);
@@ -99,6 +100,9 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
+      {/* Promotional Popup */}
+      <PromotionalPopup delay={5} />
+      
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
