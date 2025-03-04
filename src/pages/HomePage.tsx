@@ -103,9 +103,9 @@ const HomePage: React.FC = () => {
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-10 md:mb-0">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">İsveç Sürücü Sınavınızı Güvenle Geçin</h1>
-              <p className="text-xl mb-8 text-blue-100">
+            <div className="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+              <h1 className="text-3xl md:text-4xl font-bold mb-6">İsveç Sürücü Sınavınızı Güvenle Geçin</h1>
+              <p className="text-lg mb-8 text-blue-100 max-w-lg">
                 İsveç Ehliyeti ile hazırlanan binlerce başarılı sürücüye katılın. Kapsamlı platformumuz daha akıllıca çalışmanıza yardımcı olur.
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
