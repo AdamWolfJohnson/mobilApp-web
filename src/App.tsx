@@ -17,6 +17,7 @@ import FAQPage from './pages/FAQPage';
 import TheoryLessonsPage from './pages/TheoryLessonsPage';
 import LessonPage from './pages/LessonPage';
 import ScrollToTop from './components/ScrollToTop';
+import WhatsAppButton from './components/WhatsAppButton';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         </main>
         <Footer />
         <ScrollToTop />
+        <WhatsAppButton phoneNumber="+46725555587" />
       </div>
     </Router>
   );

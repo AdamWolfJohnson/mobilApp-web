@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Users, Award, BookOpen, Target, ThumbsUp, Heart, Linkedin, Instagram, Mail, Play } from 'lucide-react';
+import { Users, Award, BookOpen, Target, ThumbsUp, Heart, Linkedin, Instagram, Mail, Play, ArrowRight } from 'lucide-react';
 import PromotionalPopup from '../components/PromotionalPopup';
 
 const AboutPage: React.FC = () => {
@@ -89,7 +89,7 @@ const AboutPage: React.FC = () => {
       <PromotionalPopup delay={5} aboutPageDelay={10} />
       
       {/* Hero Section */}
-      <section className="bg-blue-600 text-white py-20">
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">İsveç Ehliyeti Hakkında</h1>
           <p className="text-xl max-w-3xl mx-auto">
@@ -319,8 +319,8 @@ const AboutPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-blue-600 text-white">
+      {/* CTA Section - Updated with gradient background */}
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Yolculuğunuza Başlamaya Hazır mısınız?</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
@@ -329,14 +329,15 @@ const AboutPage: React.FC = () => {
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <Link 
               to="/pricing" 
-              className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors"
+              className="bg-white text-blue-700 px-8 py-4 rounded-md font-bold text-lg hover:bg-blue-50 transition-colors inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
               onClick={scrollToTop}
             >
               Fiyatlandırma Planlarını Görüntüle
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
             <Link 
               to="/contact" 
-              className="bg-transparent border-2 border-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:bg-opacity-10 transition-colors"
+              className="bg-transparent border-2 border-white px-8 py-4 rounded-md font-bold text-lg text-white hover:bg-white/10 transition-colors"
               onClick={scrollToTop}
             >
               Bize Ulaşın

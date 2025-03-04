@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, CheckCircle, BarChart, Award, Clock, Shield, Play } from 'lucide-react';
+import { BookOpen, CheckCircle, BarChart, Award, Clock, Shield, Play, ArrowRight } from 'lucide-react';
 import FeatureCard from '../components/FeatureCard';
 import TestimonialCard from '../components/TestimonialCard';
 import FAQ from '../components/FAQ';
 import PromotionalPopup from '../components/PromotionalPopup';
+import HeroSlider from '../components/HeroSlider';
 
 const HomePage: React.FC = () => {
-  const [showVideo, setShowVideo] = useState(false);
   const [showWhyChooseVideo, setShowWhyChooseVideo] = useState(false);
   
   // Function to scroll to top when clicking links
@@ -103,63 +103,8 @@ const HomePage: React.FC = () => {
       {/* Promotional Popup */}
       <PromotionalPopup delay={5} />
       
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-              <h1 className="text-3xl md:text-4xl font-bold mb-6">İsveç Sürücü Sınavınızı Güvenle Geçin</h1>
-              <p className="text-lg mb-8 text-blue-100 max-w-lg">
-                İsveç Ehliyeti ile hazırlanan binlerce başarılı sürücüye katılın. Kapsamlı platformumuz daha akıllıca çalışmanıza yardımcı olur.
-              </p>
-              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <Link 
-                  to="/pricing" 
-                  className="bg-white text-blue-600 px-6 py-3 rounded-md font-semibold text-center hover:bg-gray-100 transition-colors"
-                  onClick={scrollToTop}
-                >
-                  Başlayın
-                </Link>
-                <Link 
-                  to="/demo" 
-                  className="bg-transparent border-2 border-white px-6 py-3 rounded-md font-semibold hover:bg-white hover:bg-opacity-10 transition-colors text-center"
-                  onClick={scrollToTop}
-                >
-                  Ücretsiz Demo Deneyin
-                </Link>
-              </div>
-            </div>
-            <div className="md:w-1/2 relative">
-              {!showVideo ? (
-                <div className="relative group cursor-pointer" onClick={() => setShowVideo(true)}>
-                  <img 
-                    src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
-                    alt="Direksiyon başındaki sürücü" 
-                    className="rounded-lg shadow-xl"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-blue-600 bg-opacity-80 rounded-full p-4 shadow-lg transform transition-transform group-hover:scale-110">
-                      <Play className="h-10 w-10 text-white" fill="white" />
-                    </div>
-                  </div>
-                  <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg group-hover:bg-opacity-30 transition-all"></div>
-                </div>
-              ) : (
-                <div className="relative pb-[56.25%] h-0 rounded-lg overflow-hidden shadow-xl">
-                  <iframe 
-                    className="absolute top-0 left-0 w-full h-full rounded-lg"
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
-                    title="İsveç Sürücü Sınavı Hazırlığı"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Slider Section */}
+      <HeroSlider />
 
       {/* Stats Section */}
       <section className="py-12 bg-gray-50">
@@ -277,8 +222,8 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Pricing Teaser */}
-      <section className="py-16 bg-blue-600 text-white">
+      {/* Pricing Teaser - Updated with gradient background */}
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Başlamaya Hazır mısınız?</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
@@ -286,10 +231,11 @@ const HomePage: React.FC = () => {
           </p>
           <Link 
             to="/pricing" 
-            className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors inline-block"
+            className="bg-white text-blue-700 px-8 py-4 rounded-md font-bold text-lg hover:bg-blue-50 transition-colors inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
             onClick={scrollToTop}
           >
             Fiyatlandırmayı Görüntüle
+            <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </div>
       </section>
@@ -331,33 +277,36 @@ const HomePage: React.FC = () => {
                 </li>
               </ul>
             </div>
-            <div className="md:w-1/2 relative">
-              {!showWhyChooseVideo ? (
-                <div className="relative group cursor-pointer" onClick={() => setShowWhyChooseVideo(true)}>
-                  <img 
-                    src="https://images.unsplash.com/photo-1600320254374-ce2d293c324e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
-                    alt="Çalışan öğrenci" 
-                    className="rounded-lg shadow-lg"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-blue-600 bg-opacity-80 rounded-full p-4 shadow-lg transform transition-transform group-hover:scale-110">
-                      <Play className="h-10 w-10 text-white" fill="white" />
+            <div className="md:w-1/2 flex justify-center">
+              <div className="w-full max-w-lg">
+                {!showWhyChooseVideo ? (
+                  <div className="relative group cursor-pointer overflow-hidden rounded-lg shadow-lg" onClick={() => setShowWhyChooseVideo(true)}>
+                    <img 
+                      src="https://images.unsplash.com/photo-1600320254374-ce2d293c324e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                      alt="Çalışan öğrenci" 
+                      className="w-full h-auto rounded-lg object-cover"
+                      style={{ maxHeight: "500px" }}
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="bg-blue-600 bg-opacity-80 rounded-full p-4 shadow-lg transform transition-transform group-hover:scale-110">
+                        <Play className="h-10 w-10 text-white" fill="white" />
+                      </div>
                     </div>
+                    <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg group-hover:bg-opacity-30 transition-all"></div>
                   </div>
-                  <div className="absolute inset-0 bg-black bg-opacity-20 rounded-lg group-hover:bg-opacity-30 transition-all"></div>
-                </div>
-              ) : (
-                <div className="relative pb-[56.25%] h-0 rounded-lg overflow-hidden shadow-xl">
-                  <iframe 
-                    className="absolute top-0 left-0 w-full h-full rounded-lg"
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
-                    title="Neden İsveç Ehliyeti'ni Seçmelisiniz"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              )}
+                ) : (
+                  <div className="relative pb-[56.25%] h-0 rounded-lg overflow-hidden shadow-xl">
+                    <iframe 
+                      className="absolute top-0 left-0 w-full h-full rounded-lg"
+                      src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" 
+                      title="Neden İsveç Ehliyeti'ni Seçmelisiniz"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -379,8 +328,8 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-blue-600 text-white">
+      {/* CTA Section - Updated with gradient background */}
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Yolculuğa Başlayın</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
@@ -389,14 +338,15 @@ const HomePage: React.FC = () => {
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <Link 
               to="/pricing" 
-              className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors"
+              className="bg-white text-blue-700 px-8 py-4 rounded-md font-bold text-lg hover:bg-blue-50 transition-colors inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
               onClick={scrollToTop}
             >
               Başlayın
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
             <Link 
               to="/contact" 
-              className="bg-transparent border-2 border-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:bg-opacity-10 transition-colors"
+              className="bg-transparent border-2 border-white px-8 py-4 rounded-md font-bold text-lg text-white hover:bg-white/10 transition-colors"
               onClick={scrollToTop}
             >
               Bize Ulaşın

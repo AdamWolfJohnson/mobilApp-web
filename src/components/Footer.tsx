@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <span className="text-xl font-bold" style={{ fontFamily: 'Arial, sans-serif' }}>İsveç Ehliyeti</span>
+              <span className="text-xl font-bold font-display">İsveç Ehliyeti</span>
             </div>
             <p className="text-gray-400 mb-4">
               İsveç sürücü belgesi hazırlığı için güvenilir ortağınız. Sınavınızı güvenle geçmenize yardımcı oluyoruz.
@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4" style={{ fontFamily: 'Futura, Arial, sans-serif' }}>Hızlı Bağlantılar</h3>
+            <h3 className="text-lg font-semibold mb-4 font-display">Hızlı Bağlantılar</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-gray-400 hover:text-white transition-colors" onClick={scrollToTop}>Ana Sayfa</Link>
@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4" style={{ fontFamily: 'Futura, Arial, sans-serif' }}>Yasal</h3>
+            <h3 className="text-lg font-semibold mb-4 font-display">Yasal</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/terms-of-service" className="text-gray-400 hover:text-white transition-colors" onClick={scrollToTop}>Kullanım Koşulları</Link>
@@ -78,7 +78,7 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4" style={{ fontFamily: 'Futura, Arial, sans-serif' }}>Bize Ulaşın</h3>
+            <h3 className="text-lg font-semibold mb-4 font-display">Bize Ulaşın</h3>
             <ul className="space-y-2">
               <li className="flex items-center space-x-2">
                 <Mail className="h-5 w-5 text-gray-400" />

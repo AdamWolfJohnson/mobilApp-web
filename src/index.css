@@ -4,6 +4,30 @@
 
 @layer base {
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Futura', 'Arial', sans-serif;
+    font-family: 'Futura', 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
   }
+  
+  body {
+    font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom animation durations */
+.duration-1500 {
+  transition-duration: 1.5s;
+}
+
+.duration-10000 {
+  transition-duration: 10s;
+}
+
+/* Font optimization */
+.font-display {
+  font-family: 'Futura', 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.font-body {
+  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }

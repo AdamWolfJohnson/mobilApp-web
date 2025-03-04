@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +15,9 @@ const ContactForm: React.FC = () => {
     message: string;
   } | null>(null);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -25,29 +29,56 @@ const ContactForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Simulate form submission
-    setFormStatus({
-      submitted: true,
-      success: true,
-      message: 'Mesajınız için teşekkürler! En kısa sürede size geri döneceğiz.'
-    });
+    if (isSubmitting) return;
     
-    // Reset form after submission
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+    setIsSubmitting(true);
     
-    // Clear success message after 5 seconds
-    setTimeout(() => {
-      setFormStatus(null);
-    }, 5000);
+    // EmailJS service configuration
+    // You'll need to replace these with your actual EmailJS credentials
+    const serviceId = 'service_your_service_id';
+    const templateId = 'template_your_template_id';
+    const publicKey = 'your_public_key';
+    
+    // Send the email using EmailJS
+    emailjs.sendForm(serviceId, templateId, formRef.current!, publicKey)
+      .then((result) => {
+        console.log('Email sent successfully:', result.text);
+        setFormStatus({
+          submitted: true,
+          success: true,
+          message: 'Mesajınız için teşekkürler! En kısa sürede size geri döneceğiz.'
+        });
+        
+        // Reset form after submission
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+      })
+      .catch((error) => {
+        console.error('Failed to send email:', error);
+        setFormStatus({
+          submitted: true,
+          success: false,
+          message: 'Mesajınız gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin veya doğrudan bizimle iletişime geçin.'
+        });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+        
+        // Clear success message after 5 seconds
+        setTimeout(() => {
+          if (formStatus?.success) {
+            setFormStatus(null);
+          }
+        }, 5000);
+      });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
           Ad Soyad
@@ -118,9 +149,12 @@ const ContactForm: React.FC = () => {
       
       <button
         type="submit"
-        className="w-full bg-blue-600 text-white py-3 px-4 rounded-md font-medium hover:bg-blue-700 transition-colors"
+        disabled={isSubmitting}
+        className={`w-full bg-blue-600 text-white py-3 px-4 rounded-md font-medium hover:bg-blue-700 transition-colors ${
+          isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+        }`}
       >
-        Mesaj Gönder
+        {isSubmitting ? 'Gönderiliyor...' : 'Mesaj Gönder'}
       </button>
       
       {formStatus && (

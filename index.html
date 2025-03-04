@@ -4,7 +4,37 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <title>İsveç Ehliyeti - Sürücü Sınavı Hazırlık</title>
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <!-- Font fallback system -->
+    <style>
+      /* Font fallback system */
+      @font-face {
+        font-family: 'Futura';
+        src: local('Futura'), 
+             local('Futura-Medium'),
+             local('FuturaPT-Medium'),
+             local('Avenir'),
+             local('Montserrat');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'Futura';
+        src: local('Futura-Bold'),
+             local('Futura Bold'),
+             local('FuturaPT-Bold'),
+             local('Avenir-Bold'),
+             local('Montserrat-Bold');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

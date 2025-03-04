@@ -490,7 +490,7 @@ const TheoryLessonsPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-blue-600 text-white py-20">
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">İsveç Ehliyet Sınavı Teori Dersleri</h1>
           <p className="text-xl max-w-3xl mx-auto mb-8">
@@ -499,10 +499,11 @@ const TheoryLessonsPage: React.FC = () => {
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <Link 
               to="/pricing" 
-              className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors"
+              className="bg-white text-blue-700 px-8 py-4 rounded-md font-bold text-lg hover:bg-blue-50 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
               onClick={scrollToTop}
             >
               Tam Erişim Al
+              <ArrowRight className="ml-2 h-5 w-5 inline-block" />
             </Link>
             <Link 
               to="/demo" 
@@ -769,7 +770,7 @@ const TheoryLessonsPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-blue-600 text-white">
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Sınavınızı Geçmeye Hazır mısınız?</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
@@ -778,7 +779,7 @@ const TheoryLessonsPage: React.FC = () => {
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <Link 
               to="/pricing" 
-              className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors flex items-center justify-center"
+              className="bg-white text-blue-700 px-8 py-4 rounded-md font-bold text-lg hover:bg-blue-50 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center"
               onClick={scrollToTop}
             >
               Tam Erişim Al
@@ -786,7 +787,7 @@ const TheoryLessonsPage: React.FC = () => {
             </Link>
             <Link 
               to="/demo" 
-              className="bg-transparent border-2 border-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:bg-opacity-10 transition-colors"
+              className="bg-transparent border-2 border-white px-8 py-4 rounded-md font-bold text-lg text-white hover:bg-white/10 transition-colors"
               onClick={scrollToTop}
             >
               Ücretsiz Demo Dene
